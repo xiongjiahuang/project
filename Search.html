@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>SEARCH</title>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      position: absolute;
+    }
+
+    nav ul {
+      margin: 0 auto;
+      list-style: none;
+      display: flex;
+      width: 500px;
+      height: 100%;
+    }
+
+    nav a {
+      color: #6c6c6c;
+      padding: 0.5em 1em;
+    }
+
+    nav a:hover {
+      color: #ff4400;
+    }
+
+    nav ul li a:link,
+    nav ul li a:visited {
+
+      display: block;
+      width: 222px;
+      height: 100%;
+      text-align: center;
+      line-height: 50px;
+      font-weight: bold;
+      font-size: 22px;
+      background-color: #f5f5f5;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:active {
+
+      background-color: #fff;
+    }
+
+    nav ul li ul {
+
+      display: none;
+      position: absolute;
+    }
+
+    nav ul li:hover ul {
+      display: block;
+      width: auto;
+    }
+
+    nav ul li ul li {
+      float: none;
+      background-color: #fff;
+      width: auto;
+    }
+
+    .ribbon {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      right: 300px;
+      top: 50px;
+      margin: auto;
+    }
+
+    .ribbon:after,
+    .ribbon:before {
+      margin-top: 0.5em;
+      content: "";
+      display: flex;
+      ;
+      border: 1.5em solid lightblue;
+    }
+
+    .ribbon:after {
+      border-right-color: transparent;
+    }
+
+    .ribbon:before {
+      border-left-color: transparent;
+    }
+
+    .ribbon a:link,
+    .ribbon a:visited {
+      color: #000;
+      text-decoration: none;
+      height: 3.5em;
+      overflow: hidden;
+    }
+
+    .ribbon span {
+      background: lightblue;
+      display: inline-block;
+      line-height: 3em;
+      padding: 0 1.5em;
+      margin-top: 0.5em;
+      position: relative;
+      -webkit-transition: background-color 0.2s, margin-top 0.2s;
+      -moz-transition: background-color 0.2s, margin-top 0.2s;
+      -ms-transition: background-color 0.2s, margin-top 0.2s;
+      -o-transition: background-color 0.2s, margin-top 0.2s;
+      transition: background-color 0.2s, margin-top 0.2s;
+    }
+
+    .ribbon a:hover span {
+      background: #FFD204;
+      margin-top: 0;
+    }
+
+    .ribbon span:before {
+      content: "";
+      position: absolute;
+      top: 3em;
+      left: 0;
+      border-right: 0.5em solid #9B8651;
+      border-bottom: 0.5em solid #fff;
+    }
+
+    .ribbon span:after {
+      content: "";
+      position: absolute;
+      top: 3em;
+      right: 0;
+      border-left: 0.5em solid #9B8651;
+      border-bottom: 0.5em solid #fff;
+
+    }
+
+    h1 {
+      position: auto;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+
+    ul,
+    li {
+      list-style-type: none;
+    }
+
+    body {
+      font-size: 14px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .content {
+      width: 1000px;
+      height: auto;
+      margin: auto;
+    }
+
+    .nav {
+      width: 1000px;
+      height: 72px;
+      background: url(../images/head.png) top center no-repeat;
+    }
+
+    .nav ul {
+      padding-left: 30px;
+    }
+
+    .nav li {
+      float: left;
+      margin: 5px;
+      margin-top: 11px;
+      height: 50px;
+      line-height: 50px;
+      padding: 0 5px;
+      border-radius: 10px;
+    }
+
+    .nav li a {
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .nav li a:hover {
+      text-decoration: underline;
+    }
+
+    .r_nav {
+      width: 200px;
+      height: 30px;
+      float: left;
+      margin-top: 10px;
+      margin-left: 60px;
+    }
+
+    .r_nava {
+      width: 30px;
+      height: 30px;
+      float: left;
+      margin: 15px;
+    }
+
+    #c1 {
+      background: #9bcb06;
+    }
+
+    #c2 {
+      background: #fc0299;
+    }
+
+    #c3 {
+      background: #ff6217;
+    }
+
+    #c4 {
+      background: #02a596;
+    }
+
+    #c5 {
+      background: #e2054f;
+    }
+
+    #c6 {
+      background: #feb712;
+    }
+
+    #c7 {
+      background: #5a5a5a;
+    }
+
+    #c8 {
+      background: #612f63;
+    }
+
+    #focus {
+      width: 1000px;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+      margin-top: 10px;
+    }
+
+    #focus ul {
+      height: 320px;
+      position: absolute;
+    }
+
+    #focus ul li {
+      float: left;
+      width: 1000px;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #focus ul li div {
+      position: absolute;
+      overflow: hidden;
+    }
+
+    #focus ul li img {
+      width: 1000px;
+      height: 320px;
+    }
+
+    #focus .btnBg {
+      position: absolute;
+      width: 1000px;
+      height: 20px;
+      left: 0;
+      bottom: 0;
+      background: #000;
+    }
+
+    #focus .btn {
+      position: absolute;
+      width: 1000px;
+      height: 20px;
+      right: 0;
+      bottom: 0;
+      text-align: right;
+    }
+
+    #focus .btn span {
+      display: inline-block;
+      width: 25px;
+      height: 10px;
+      font-size: 0;
+      margin-right: 10px;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    #focus .btn span.on {
+      background: #fff;
+    }
+
+    #focus .preNext {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 50%;
+      margin-top: -25px;
+      cursor: pointer;
+    }
+
+    #focus .pre {
+      left: 0;
+      background: url(../images/prev.png);
+    }
+
+    #focus .next {
+      right: 0;
+      background: url(../images/next.png);
+    }
+
+    .main {
+      width: 100%;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .main_left {
+      width: 234px;
+      float: left;
+    }
+
+    .sidebar {
+      width: 230px;
+      overflow: hidden;
+      border: 2px solid #950c0c;
+      border-radius: 10px;
+    }
+
+    .sidebar h3 {
+      height: 40px;
+      background: #950c0c;
+      font-size: 18px;
+      color: #fff;
+      line-height: 38px;
+      padding-left: 20px;
+    }
+
+    .sidebar p {
+      font-size: 15px;
+      color: #555;
+      line-height: 28px;
+      text-indent: 1em;
+      font-weight: normal;
+    }
+
+    .side_list {
+      width: 223px;
+      margin-left: 7px;
+      overflow: hidden;
+    }
+
+    .side_list li {
+      width: 188px;
+      background: url(../images/dot.jpg) left no-repeat;
+      height: 32px;
+      line-height: 32px;
+      padding-left: 15px;
+      margin: 5px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .side_list li a {
+      color: #000;
+    }
+
+    .side_list li a:hover {
+      text-decoration: underline;
+    }
+
+    .sidebar .pic {
+      width: 203px;
+      height: 200px;
+      margin: 10px auto;
+    }
+
+    .sidebar .pic img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .main_right {
+      width: 720px;
+      float: right;
+      overflow: hidden;
+      padding-bottom: 20px;
+    }
+
+    .main_right .weizhi {
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 2px solid #F63;
+    }
+
+    .main_right .weizhi h3 {
+      float: left;
+      color: #F63;
+    }
+
+    .main_right .weizhi p {
+      float: right;
+      color: #333;
+    }
+
+    .main_right .weizhi p a {
+      color: #333;
+    }
+
+    .main_right .weizhi p a:hover {
+      color: #F63;
+    }
+
+    .index h2 {
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .index h2 span {
+      color: #f85811;
+    }
+
+    .index p {
+      line-height: 2;
+      text-indent: 28px;
+    }
+
+    .index li {
+      width: 340px;
+      background: #f2f2f2;
+      float: left;
+      margin: 10px;
+    }
+
+    .index li span {
+      display: block;
+      width: 100%;
+      height: 75px;
+      line-height: 75px;
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+      border-radius: 10px;
+      background: url(../images/tbj2.png);
+    }
+
+    .index li img {
+      display: block;
+      width: 320px;
+      height: 240px;
+      margin: 10px;
+    }
+
+    .footer {
+      width: 100%;
+      padding: 10px 0;
+      background: #F63;
+    }
+
+    .footer p {
+      text-align: center;
+      font-size: 20px;
+      line-height: 2;
+      color: #fff;
+    }
+
+    .neiye h4 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .neiye p {
+      line-height: 2;
+      text-indent: 28px;
+    }
+
+    .neiye img {
+      display: block;
+      width: 100%;
+    }
+
+    .koujue {
+      width: 240px;
+      float: left;
+      text-align: center;
+    }
+
+    .koujue p {
+      text-indent: 0;
+    }
+
+    .zhanshi li {
+      width: 320px;
+      float: left;
+      margin: 20px;
+      text-align: center;
+    }
+
+    .zhanshi li img {
+      display: block;
+      width: 320px;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li>
+        <a href="https://www.zhihu.com/question/27043627/answer/1954448017">身材</a>
+        <ul>
+          <li>
+            <a href="https://www.zhihu.com/question/264969963/answer/559967261">减脂</a>
+          </li>
+          <li>
+            <a href="https://www.zhihu.com/question/20687290/answer/15853608">增肌</a>
+          </li>
+          <li>
+            <a href="https://zhihu.com">知乎解答</a>
+          </li>
+          <li>
+            <a href=" https://b23.tv/BqGekWh">视频</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://www.zhihu.com/question/367350188/answer/1125466397">学习</a>
+        <ul>
+          <li>
+            <a href="https://zhuanlan.zhihu.com/p/25577590">英语学习</a>
+          </li>
+          <li>
+            <a href="https://zhuanlan.zhihu.com/p/34418394">编程学习</a>
+          </li>
+          <li>
+            <a href="https://zhuanlan.zhihu.com/p/346748028">自我提升</a>
+          </li>
+          <li>
+            <a href="https://b23.tv/FtI3EJZ">视频</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://www.zhihu.com/question/21614678/answer/18778095">失败与挫折</a>
+        <ul>
+          <li>
+            <a href="https://zhuanlan.zhihu.com/p/76796342">接受自己</a>
+          </li>
+          <li>
+            <a href="https://www.zhihu.com/question/19906048/answer/436135135">自信</a>
+          </li>
+          <li>
+            <a href="https://www.zhihu.com/question/304924099/answer/681939382">自律</a>
+          </li>
+          <li>
+            <a href="https://b23.tv/FKsMV4L">视频</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  </style>
+  </head>
+  <div class='ribbon'>
+    <a href='./index.html'><span>Home</span></a>
+    <a href='./Search.html'><span>Search</span></a>
+    <a href='./hobbies.html'><span>Hobbies</span></a>
+    <a href='./about.html'><span>About</span></a>
+    <a href='./baogao.html'><span>Reprot</span></a>
+  </div>
+
+  <br><br><br> <br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+  <h2>人间烟火气，最抚凡人心</h2>
+  <h2>在吃货这条路上，我们从不孤独</h2>
+  <h2>来我的怀里，或者，让我住进你的胃里，唤醒沉睡的味蕾，与食物相濡以沫</h2>
+  <h2>我很喜欢吃好吃的东西，对美食根本无法抵抗</h2>
+
+  <br><br><br>
+
+  <h2>个人很喜欢吃美食，这里介绍重庆火锅</h2>
+
+
+
+
+  <div class="content">
+    <div class="nav">
+      <ul>
+        <li id="c1"><a>火锅底料</a></li>
+        <li id="c2"><a>火锅历史</a></li>
+        <li id="c3"><a>炒制原料</a></li>
+        <li id="c4"><a>火锅吃法</a></li>
+        <li id="c5"><a>火锅食材</a></li>
+      </ul>
+    </div>
+    <div id="focus">
+      <ul>
+        <li><a href="#"><img src="图片.jpg/cqhg.jpg" /></a></li>
+
+      </ul>
+    </div>
+    <div class="main">
+      <div class="main_left">
+        <div class="sidebar">
+          <h3>火锅特色</h3>
+          <ul class="side_list">
+            <li><a>火锅底料</a></li>
+            <li><a>火锅历史</a></li>
+            <li><a>炒制原料</a></li>
+            <li><a>火锅吃法</a></li>
+            <li><a>火锅食材</a></li>
+          </ul>
+          <div class="pic"><a><img src="图片.jpg/1.jpg" /></a></div>
+          <div class="pic"><a><img src="图片.jpg/2.jpg" /></a></div>
+        </div>
+      </div>
+      <div class="main_right">
+        <div class="index">
+          <h2>特色美食<span>重庆火锅~~!</span></h2>
+          <p>
+            重庆火锅，又称为毛肚火锅或麻辣火锅，是中国的传统饮食方式，起源于明末清初的重庆嘉陵江畔、朝天门等码头船工纤夫的粗放餐饮方式，原料主要是牛毛肚、猪黄喉、鸭肠、牛血旺等。
+            重庆火锅的容器、制法和调味等，虽然已经历了上千年的演变，但一个共同点未变，就是用火烧锅，以水（汤）导热，煮（涮）食物。这种烹调方法早在商周时期已经出现，可以说是火锅的
+            雏形。《韩诗外传》中记载，古代祭祀或庆典，要“击钟列鼎”而食，即众人围在鼎的周边，将牛羊肉等食物放入鼎中煮熟分食，这就是火锅的萌芽。历经秦、汉、唐代的演变，直到宋代才
+            真正有了火锅的记载。宋人林洪在其《山家清供》中提到吃火锅之事，即其所称的“拨霞供”。他谈到在游五夷山、访师道时，在雪地里得一兔子，无厨师烹制。“师云，山间只用薄批，酒、
+            酱、椒料沃之。以风炉安桌上，用水半铫，候汤响一杯后，各分以箸，令自夹入汤摆熟，啖之，乃随意各以汁供随意沾食。”从吃法上看，它类似现在的“涮兔肉火锅”。
+            2007年3月20日，在第三届中国(重庆)火锅美食文化节开幕式上，中国烹饪协会正式授予重庆市“中国火锅之都”称号。以“火锅之都”命名一个城市，这在中国历史上尚属首次。
+            来自全国的8位专家组成的“中国火锅之都”考察认定组汇集重庆。专家组围绕重庆火锅的形成、发展和现状，进行了深入的实地调查和科学论证后一致认为，重庆应为中国火锅之都。
+            火锅申国遗，主要是申请对传统炒料工艺、技艺及火锅器具、吃火锅的饮食方式等进行保护。希望重庆火锅的传统技艺及火锅文化能在大工业生产中传承下来。
+            重庆火锅起源于两江交汇的码头文化，传统的手工炒料工艺技术已经得到广泛使用，但与当初相比，无论是炒料，还是食材、器皿等，都已经发生了变化。
+            作为中国火锅之都，接下来，重庆火锅还会申请世界级非物质文化遗产保护。
+          </p>
+          <ul>
+            <li>
+              <span>特色锅底</span>
+              <img src="图片.jpg/3.jpg">
+            </li>
+            <li>
+              <span>特色锅底</span>
+              <img src="图片.jpg/4.jpg">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>重庆火锅</p>
+    </div>
+</body>
+
+</html>
